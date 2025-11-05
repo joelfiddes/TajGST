@@ -120,3 +120,12 @@ When adding new data:
 - **Interactive Map**: `logger_map.html` - Browse logger locations and access plots
 - **Temperature Plots**: Individual PNG files in `plots/` directory
 - **Processed Data**: Time-corrected data files with `_offset` suffix
+- 
+
+## Interactive Map
+
+### Sangvor/ Nissai
+<img width="1511" height="801" alt="image" src="https://github.com/user-attachments/assets/edcb2cf3-ddbb-42d8-87d9-d483bdf3d9a8" />
+### Fan Mountains
+<img width="1511" height="801" alt="image" src="https://github.com/user-attachments/assets/c4cd29bc-7fec-4d69-ae59-6c6c3e29be15" />
+
