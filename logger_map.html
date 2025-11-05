@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_295722c237b7eaa383b6f0970a270a32 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+                top: 10px; right: 10px; width: 200px; height: auto; 
+                background-color: white; border:2px solid grey; z-index:9999; 
+                font-size:14px; padding: 10px">
+    <h4>Surface Types</h4>
+    <p><i class="fa fa-circle" style="color:gray"></i> Blocks/Rock</p>
+    <p><i class="fa fa-circle" style="color:darkred"></i> Silt/Sediment</p>
+    <p><i class="fa fa-circle" style="color:orange"></i> Gravel</p>
+    <p><i class="fa fa-circle" style="color:beige"></i> Sand</p>
+    <p><i class="fa fa-circle" style="color:green"></i> Pasture</p>
+    <p><i class="fa fa-circle" style="color:black"></i> Void</p>
+    <p><i class="fa fa-circle" style="color:purple"></i> Moraine</p>
+    <p><i class="fa fa-circle" style="color:blue"></i> Other</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_295722c237b7eaa383b6f0970a270a32" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_295722c237b7eaa383b6f0970a270a32 = L.map(
+                "map_295722c237b7eaa383b6f0970a270a32",
+                {
+                    center: [38.8670193125, 69.82606703125],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0a4b14a488921feea93c18c1884d4255 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0a4b14a488921feea93c18c1884d4255.addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var tile_layer_8c090ea4f27e0c1d9890fe6cc6432cfc = L.tileLayer(
+                "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Map data: \u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors, \u003ca href=\"http://viewfinderpanoramas.org\"\u003eSRTM\u003c/a\u003e | Map style: \u0026copy; \u003ca href=\"https://opentopomap.org\"\u003eOpenTopoMap\u003c/a\u003e (\u003ca href=\"https://creativecommons.org/licenses/by-sa/3.0/\"\u003eCC-BY-SA\u003c/a\u003e)",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8c090ea4f27e0c1d9890fe6cc6432cfc.addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var tile_layer_cc80b73579bf76e29638f8f30e4d1eba = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri \u0026mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cc80b73579bf76e29638f8f30e4d1eba.addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var marker_cce20084c07cc64a1f7fa5693a6c5c30 = L.marker(
+                [38.73397, 71.371821],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_d7e846183171ae27f365d34d4d208cdc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1b00761d49daac8c31b78f51ebf42415 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d5ee1dcb5f3d47fdc338e6d35748a742 = $(`<div id="html_d5ee1dcb5f3d47fdc338e6d35748a742" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0086</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>44</td></tr><tr><td><b>Elevation:</b></td><td>4389 m</td></tr><tr><td><b>Surface:</b></td><td>rock</td></tr><tr><td><b>Installed:</b></td><td>23.9.2021</td></tr><tr><td><b>Notes:</b></td><td>crack in rocck</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0086_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_1b00761d49daac8c31b78f51ebf42415.setContent(html_d5ee1dcb5f3d47fdc338e6d35748a742);
+            
+        
+
+        marker_cce20084c07cc64a1f7fa5693a6c5c30.bindPopup(popup_1b00761d49daac8c31b78f51ebf42415)
+        ;
+
+        
+    
+    
+            marker_cce20084c07cc64a1f7fa5693a6c5c30.bindTooltip(
+                `<div>
+                     Logger 2005-0086 (BLE) - rock
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cce20084c07cc64a1f7fa5693a6c5c30.setIcon(icon_d7e846183171ae27f365d34d4d208cdc);
+            
+    
+            var marker_eff727c3a9cd3789d53d37b628a3e766 = L.marker(
+                [38.733919, 71.37149],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_954fa8ebd48976b1322f5426e1c6a4fa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bde3fb0ef78d658161fbd7cd57f14ed2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5221da3e5442151d7a88e08c0eebfd12 = $(`<div id="html_5221da3e5442151d7a88e08c0eebfd12" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0087</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>48</td></tr><tr><td><b>Elevation:</b></td><td>4404 m</td></tr><tr><td><b>Surface:</b></td><td>rock</td></tr><tr><td><b>Installed:</b></td><td>23.9.2021</td></tr><tr><td><b>Notes:</b></td><td>directly 10 m below wp47, no response in September 2022 so replavced. Data successfully retrieved in office</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0087_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_bde3fb0ef78d658161fbd7cd57f14ed2.setContent(html_5221da3e5442151d7a88e08c0eebfd12);
+            
+        
+
+        marker_eff727c3a9cd3789d53d37b628a3e766.bindPopup(popup_bde3fb0ef78d658161fbd7cd57f14ed2)
+        ;
+
+        
+    
+    
+            marker_eff727c3a9cd3789d53d37b628a3e766.bindTooltip(
+                `<div>
+                     Logger 2005-0087 (BLE) - rock
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eff727c3a9cd3789d53d37b628a3e766.setIcon(icon_954fa8ebd48976b1322f5426e1c6a4fa);
+            
+    
+            var marker_e9da4ca9fcb1a0d564789bcd8ee8caa3 = L.marker(
+                [38.733873, 71.371571],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_b5faa4a573823bbcede0c0ece355aa1a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0986dc34d48b34627ee3625c3367e0fe = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_31370d8eb89a4462a241ea543382acc3 = $(`<div id="html_31370d8eb89a4462a241ea543382acc3" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0082</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>47</td></tr><tr><td><b>Elevation:</b></td><td>4412 m</td></tr><tr><td><b>Surface:</b></td><td>sediment</td></tr><tr><td><b>Installed:</b></td><td>23.9.2021</td></tr><tr><td><b>Notes:</b></td><td>sediment on ridge</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0082_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_0986dc34d48b34627ee3625c3367e0fe.setContent(html_31370d8eb89a4462a241ea543382acc3);
+            
+        
+
+        marker_e9da4ca9fcb1a0d564789bcd8ee8caa3.bindPopup(popup_0986dc34d48b34627ee3625c3367e0fe)
+        ;
+
+        
+    
+    
+            marker_e9da4ca9fcb1a0d564789bcd8ee8caa3.bindTooltip(
+                `<div>
+                     Logger 2005-0082 (BLE) - sediment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e9da4ca9fcb1a0d564789bcd8ee8caa3.setIcon(icon_b5faa4a573823bbcede0c0ece355aa1a);
+            
+    
+            var marker_ab892e9e1854d1f8cdc47233a8f18efb = L.marker(
+                [38.746032, 71.354001],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_aecc123a506822e0b21c7c28898a5aca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48bef7266f1a14b71605f1fdc7bd3a2b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b9ff45e58fbab4510afd7e2360a0cd24 = $(`<div id="html_b9ff45e58fbab4510afd7e2360a0cd24" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0077</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>49</td></tr><tr><td><b>Elevation:</b></td><td>3942 m</td></tr><tr><td><b>Installed:</b></td><td>23.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0077_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_48bef7266f1a14b71605f1fdc7bd3a2b.setContent(html_b9ff45e58fbab4510afd7e2360a0cd24);
+            
+        
+
+        marker_ab892e9e1854d1f8cdc47233a8f18efb.bindPopup(popup_48bef7266f1a14b71605f1fdc7bd3a2b)
+        ;
+
+        
+    
+    
+            marker_ab892e9e1854d1f8cdc47233a8f18efb.bindTooltip(
+                `<div>
+                     Logger 2005-0077 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ab892e9e1854d1f8cdc47233a8f18efb.setIcon(icon_aecc123a506822e0b21c7c28898a5aca);
+            
+    
+            var marker_5b4b10d83a0599ea19ac72c949efacc5 = L.marker(
+                [38.745178, 71.353654],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_29b075da6d823051ba8840e8652bf880 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0361297f73c2e946b141310b30b106b7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1023aaec063b30efcbc2ad715dca3baf = $(`<div id="html_1023aaec063b30efcbc2ad715dca3baf" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0071</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>50</td></tr><tr><td><b>Elevation:</b></td><td>3938 m</td></tr><tr><td><b>Installed:</b></td><td>23.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0071_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_0361297f73c2e946b141310b30b106b7.setContent(html_1023aaec063b30efcbc2ad715dca3baf);
+            
+        
+
+        marker_5b4b10d83a0599ea19ac72c949efacc5.bindPopup(popup_0361297f73c2e946b141310b30b106b7)
+        ;
+
+        
+    
+    
+            marker_5b4b10d83a0599ea19ac72c949efacc5.bindTooltip(
+                `<div>
+                     Logger 2005-0071 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5b4b10d83a0599ea19ac72c949efacc5.setIcon(icon_29b075da6d823051ba8840e8652bf880);
+            
+    
+            var marker_1a5131c9956b2708403611f8cfeefc30 = L.marker(
+                [38.73751, 71.393875],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_545ff7b34317268b377133e36cd9c5c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_41edf5eac76bc22bb925ba9235bbf8ea = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_dcec197122e54140daf66b415a11efcb = $(`<div id="html_dcec197122e54140daf66b415a11efcb" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0085</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>54</td></tr><tr><td><b>Elevation:</b></td><td>4616 m</td></tr><tr><td><b>Installed:</b></td><td>24.9.2021</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: 2005-0085_combined.png         </div>         </div></div>`)[0];
+                popup_41edf5eac76bc22bb925ba9235bbf8ea.setContent(html_dcec197122e54140daf66b415a11efcb);
+            
+        
+
+        marker_1a5131c9956b2708403611f8cfeefc30.bindPopup(popup_41edf5eac76bc22bb925ba9235bbf8ea)
+        ;
+
+        
+    
+    
+            marker_1a5131c9956b2708403611f8cfeefc30.bindTooltip(
+                `<div>
+                     Logger 2005-0085 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1a5131c9956b2708403611f8cfeefc30.setIcon(icon_545ff7b34317268b377133e36cd9c5c7);
+            
+    
+            var marker_94da747e814e3c2727e83ff65bba5757 = L.marker(
+                [38.742309, 71.360396],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_7045298712d5a1a9c50a678feb1213e6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cf94cd8b9142011a733b2979c467c582 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_aa9306cf2deb1cb29ee19ad8fd5c1c1e = $(`<div id="html_aa9306cf2deb1cb29ee19ad8fd5c1c1e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0080</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>55</td></tr><tr><td><b>Elevation:</b></td><td>4002 m</td></tr><tr><td><b>Installed:</b></td><td>24.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0080_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_cf94cd8b9142011a733b2979c467c582.setContent(html_aa9306cf2deb1cb29ee19ad8fd5c1c1e);
+            
+        
+
+        marker_94da747e814e3c2727e83ff65bba5757.bindPopup(popup_cf94cd8b9142011a733b2979c467c582)
+        ;
+
+        
+    
+    
+            marker_94da747e814e3c2727e83ff65bba5757.bindTooltip(
+                `<div>
+                     Logger 2005-0080 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_94da747e814e3c2727e83ff65bba5757.setIcon(icon_7045298712d5a1a9c50a678feb1213e6);
+            
+    
+            var marker_6a0a5f59926f9cf0351fc6ff583ef621 = L.marker(
+                [38.74031, 71.352994],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_56a22e23a8475513165aa21dff4fabf3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1977777d70d839676e23bd2ccd1b6e5d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_87d22ffd0121db73974a509f7df72026 = $(`<div id="html_87d22ffd0121db73974a509f7df72026" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0076</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>58</td></tr><tr><td><b>Elevation:</b></td><td>3951 m</td></tr><tr><td><b>Surface:</b></td><td>icecored morraine</td></tr><tr><td><b>Installed:</b></td><td>24.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0076_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_1977777d70d839676e23bd2ccd1b6e5d.setContent(html_87d22ffd0121db73974a509f7df72026);
+            
+        
+
+        marker_6a0a5f59926f9cf0351fc6ff583ef621.bindPopup(popup_1977777d70d839676e23bd2ccd1b6e5d)
+        ;
+
+        
+    
+    
+            marker_6a0a5f59926f9cf0351fc6ff583ef621.bindTooltip(
+                `<div>
+                     Logger 2005-0076 (BLE) - icecored morraine
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a0a5f59926f9cf0351fc6ff583ef621.setIcon(icon_56a22e23a8475513165aa21dff4fabf3);
+            
+    
+            var marker_a8256652cefd213ae8cee151020296b8 = L.marker(
+                [38.748462, 71.341133],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_37f08dba3a99b41552897417d8fe8d9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d86682093ecc19fe920558d457dd23c8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6ac833eda3e320cee7cd0e0e4653e0ef = $(`<div id="html_6ac833eda3e320cee7cd0e0e4653e0ef" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0070</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>59</td></tr><tr><td><b>Elevation:</b></td><td>3591 m</td></tr><tr><td><b>Installed:</b></td><td>24.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0070_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_d86682093ecc19fe920558d457dd23c8.setContent(html_6ac833eda3e320cee7cd0e0e4653e0ef);
+            
+        
+
+        marker_a8256652cefd213ae8cee151020296b8.bindPopup(popup_d86682093ecc19fe920558d457dd23c8)
+        ;
+
+        
+    
+    
+            marker_a8256652cefd213ae8cee151020296b8.bindTooltip(
+                `<div>
+                     Logger 2005-0070 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a8256652cefd213ae8cee151020296b8.setIcon(icon_37f08dba3a99b41552897417d8fe8d9c);
+            
+    
+            var marker_34810432b2ab16e9f1cd4c6e5e8479a5 = L.marker(
+                [38.750384, 71.33036],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_4d4947df059284092da203c73116154c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_836f9baebd4a248516301f9b899403e5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2a5c7012bd04f3911ddc95876587840f = $(`<div id="html_2a5c7012bd04f3911ddc95876587840f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0081</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>60</td></tr><tr><td><b>Elevation:</b></td><td>3236 m</td></tr><tr><td><b>Installed:</b></td><td>25.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0081_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_836f9baebd4a248516301f9b899403e5.setContent(html_2a5c7012bd04f3911ddc95876587840f);
+            
+        
+
+        marker_34810432b2ab16e9f1cd4c6e5e8479a5.bindPopup(popup_836f9baebd4a248516301f9b899403e5)
+        ;
+
+        
+    
+    
+            marker_34810432b2ab16e9f1cd4c6e5e8479a5.bindTooltip(
+                `<div>
+                     Logger 2005-0081 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_34810432b2ab16e9f1cd4c6e5e8479a5.setIcon(icon_4d4947df059284092da203c73116154c);
+            
+    
+            var marker_4ff2378c6c5401b2cc439e64d7e16c16 = L.marker(
+                [38.737387, 71.3075],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_d0eb1e045b0167afe750f84d44a7913e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b582a454a90f02171fe7423b9fba3cc0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8ba55aa0b217fec7ce33f9ada4ed3fe8 = $(`<div id="html_8ba55aa0b217fec7ce33f9ada4ed3fe8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0091</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>62</td></tr><tr><td><b>Elevation:</b></td><td>2801 m</td></tr><tr><td><b>Installed:</b></td><td>25.9.2021</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0091_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_b582a454a90f02171fe7423b9fba3cc0.setContent(html_8ba55aa0b217fec7ce33f9ada4ed3fe8);
+            
+        
+
+        marker_4ff2378c6c5401b2cc439e64d7e16c16.bindPopup(popup_b582a454a90f02171fe7423b9fba3cc0)
+        ;
+
+        
+    
+    
+            marker_4ff2378c6c5401b2cc439e64d7e16c16.bindTooltip(
+                `<div>
+                     Logger 2005-0091 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ff2378c6c5401b2cc439e64d7e16c16.setIcon(icon_d0eb1e045b0167afe750f84d44a7913e);
+            
+    
+            var marker_31f7ab04a41aa889b7f827cd7792a10f = L.marker(
+                [38.722846, 71.295889],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_b511397228a0a7b79ae04d9071887804 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c3fab02f9a8f2c06fd4281ef7f2c8b48 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0cdf5f9fde1e7b01ccb931397be58237 = $(`<div id="html_0cdf5f9fde1e7b01ccb931397be58237" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0079</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>63</td></tr><tr><td><b>Elevation:</b></td><td>2431 m</td></tr><tr><td><b>Installed:</b></td><td>25.9.2021</td></tr><tr><td><b>Notes:</b></td><td>lost in 2023 to ploughed field</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0079_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_c3fab02f9a8f2c06fd4281ef7f2c8b48.setContent(html_0cdf5f9fde1e7b01ccb931397be58237);
+            
+        
+
+        marker_31f7ab04a41aa889b7f827cd7792a10f.bindPopup(popup_c3fab02f9a8f2c06fd4281ef7f2c8b48)
+        ;
+
+        
+    
+    
+            marker_31f7ab04a41aa889b7f827cd7792a10f.bindTooltip(
+                `<div>
+                     Logger 2005-0079 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_31f7ab04a41aa889b7f827cd7792a10f.setIcon(icon_b511397228a0a7b79ae04d9071887804);
+            
+    
+            var marker_4aa7f5d7577b97c1888015f03faea49d = L.marker(
+                [38.733798, 71.371561],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_97d32e3e028cee15fc3f7121d478f3ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a95eb22e5e867a6e25d66c10bfbed93 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b5ed9605ce88b30a19aab710e7cd1474 = $(`<div id="html_b5ed9605ce88b30a19aab710e7cd1474" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A542D3</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>GEOP ROCK</td></tr><tr><td><b>Waypoint:</b></td><td>100</td></tr><tr><td><b>Elevation:</b></td><td>4416 m</td></tr><tr><td><b>Access Code:</b></td><td>DE10</td></tr><tr><td><b>Installed:</b></td><td>7.9.2022</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A542D3_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_8a95eb22e5e867a6e25d66c10bfbed93.setContent(html_b5ed9605ce88b30a19aab710e7cd1474);
+            
+        
+
+        marker_4aa7f5d7577b97c1888015f03faea49d.bindPopup(popup_8a95eb22e5e867a6e25d66c10bfbed93)
+        ;
+
+        
+    
+    
+            marker_4aa7f5d7577b97c1888015f03faea49d.bindTooltip(
+                `<div>
+                     Logger A542D3 (GEOP ROCK)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4aa7f5d7577b97c1888015f03faea49d.setIcon(icon_97d32e3e028cee15fc3f7121d478f3ef);
+            
+    
+            var marker_5924bc37ab34e16b32129b47d93ac2c5 = L.marker(
+                [38.73392, 71.37149],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_c6f8cacff703af88d4fdc896871f5ccd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ca146d4f1dcbeebe994fd9c0e382f95 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c189789b0c3ccc3537c513332b416773 = $(`<div id="html_c189789b0c3ccc3537c513332b416773" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0074</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>48</td></tr><tr><td><b>Elevation:</b></td><td>4404 m</td></tr><tr><td><b>Surface:</b></td><td>rock</td></tr><tr><td><b>Installed:</b></td><td>7.9.2022</td></tr><tr><td><b>Notes:</b></td><td>directly 10 m below wp47, no response in September 2022 so replavced. Data successfully retrieved in office</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0074_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_1ca146d4f1dcbeebe994fd9c0e382f95.setContent(html_c189789b0c3ccc3537c513332b416773);
+            
+        
+
+        marker_5924bc37ab34e16b32129b47d93ac2c5.bindPopup(popup_1ca146d4f1dcbeebe994fd9c0e382f95)
+        ;
+
+        
+    
+    
+            marker_5924bc37ab34e16b32129b47d93ac2c5.bindTooltip(
+                `<div>
+                     Logger 2005-0074 (BLE) - rock
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5924bc37ab34e16b32129b47d93ac2c5.setIcon(icon_c6f8cacff703af88d4fdc896871f5ccd);
+            
+    
+            var marker_0f5c136a7debd2dbcdf40b6ac1a6f2cc = L.marker(
+                [38.72287, 71.29581],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_8dd77e73edbdfc7453a93f5c3d3f44fc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4afa7b8603fcde26b042aa7f63f1a44a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e91f06ab204e7b0aadd80f4a8235d019 = $(`<div id="html_e91f06ab204e7b0aadd80f4a8235d019" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger 2005-0092</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Type:</b></td><td>BLE</td></tr><tr><td><b>Waypoint:</b></td><td>114</td></tr><tr><td><b>Elevation:</b></td><td>2429 m</td></tr><tr><td><b>Installed:</b></td><td>22.9.2023</td></tr><tr><td><b>Notes:</b></td><td>replaced 2005-0079 10m to NW inbetween copice of trees to be safe </td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/2005-0092_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_4afa7b8603fcde26b042aa7f63f1a44a.setContent(html_e91f06ab204e7b0aadd80f4a8235d019);
+            
+        
+
+        marker_0f5c136a7debd2dbcdf40b6ac1a6f2cc.bindPopup(popup_4afa7b8603fcde26b042aa7f63f1a44a)
+        ;
+
+        
+    
+    
+            marker_0f5c136a7debd2dbcdf40b6ac1a6f2cc.bindTooltip(
+                `<div>
+                     Logger 2005-0092 (BLE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0f5c136a7debd2dbcdf40b6ac1a6f2cc.setIcon(icon_8dd77e73edbdfc7453a93f5c3d3f44fc);
+            
+    
+            var marker_1b0bdca4578040d3c431f34dfaad823b = L.marker(
+                [39.02084, 68.41305],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_3938851efb275bf5d65c2a99ee1b7832 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7badde23d91311d8c5f1140f1bf91648 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5fd63857ceb714b47e83305584b7144b = $(`<div id="html_5fd63857ceb714b47e83305584b7144b" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B39</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>1</td></tr><tr><td><b>Elevation:</b></td><td>3042 m</td></tr><tr><td><b>Surface:</b></td><td>pasture</td></tr><tr><td><b>Installed:</b></td><td>2019/08/25</td></tr><tr><td><b>Notes:</b></td><td>above camp1</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B39_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_7badde23d91311d8c5f1140f1bf91648.setContent(html_5fd63857ceb714b47e83305584b7144b);
+            
+        
+
+        marker_1b0bdca4578040d3c431f34dfaad823b.bindPopup(popup_7badde23d91311d8c5f1140f1bf91648)
+        ;
+
+        
+    
+    
+            marker_1b0bdca4578040d3c431f34dfaad823b.bindTooltip(
+                `<div>
+                     Logger A53B39 - pasture
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b0bdca4578040d3c431f34dfaad823b.setIcon(icon_3938851efb275bf5d65c2a99ee1b7832);
+            
+    
+            var marker_0775eb6d938aca1e6c67d8dc289b4279 = L.marker(
+                [38.99025, 68.47156],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_9822ef26238351f50b4893231ef61e55 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f17351e8ee527fe6a290575a40c63ef4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_675cbec7e09bc47bc71db9a1508c89c0 = $(`<div id="html_675cbec7e09bc47bc71db9a1508c89c0" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B34</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>2</td></tr><tr><td><b>Elevation:</b></td><td>3475 m</td></tr><tr><td><b>Surface:</b></td><td>sand/silt</td></tr><tr><td><b>Installed:</b></td><td>2019/08/25</td></tr><tr><td><b>Notes:</b></td><td>camp2</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B34_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_f17351e8ee527fe6a290575a40c63ef4.setContent(html_675cbec7e09bc47bc71db9a1508c89c0);
+            
+        
+
+        marker_0775eb6d938aca1e6c67d8dc289b4279.bindPopup(popup_f17351e8ee527fe6a290575a40c63ef4)
+        ;
+
+        
+    
+    
+            marker_0775eb6d938aca1e6c67d8dc289b4279.bindTooltip(
+                `<div>
+                     Logger A53B34 - sand/silt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0775eb6d938aca1e6c67d8dc289b4279.setIcon(icon_9822ef26238351f50b4893231ef61e55);
+            
+    
+            var marker_9236b9caf5cb382b09a299854aae3be3 = L.marker(
+                [38.96507, 68.49361],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_19a3c44f302ee53531021663968478a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0991f771e5e45902c93158d2d26c4cd7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_cd47bcaa16d532126abe0eff8794083e = $(`<div id="html_cd47bcaa16d532126abe0eff8794083e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B37</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>6</td></tr><tr><td><b>Elevation:</b></td><td>4060 m</td></tr><tr><td><b>Surface:</b></td><td>sand/silt</td></tr><tr><td><b>Installed:</b></td><td>2019/08/26</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B37_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_0991f771e5e45902c93158d2d26c4cd7.setContent(html_cd47bcaa16d532126abe0eff8794083e);
+            
+        
+
+        marker_9236b9caf5cb382b09a299854aae3be3.bindPopup(popup_0991f771e5e45902c93158d2d26c4cd7)
+        ;
+
+        
+    
+    
+            marker_9236b9caf5cb382b09a299854aae3be3.bindTooltip(
+                `<div>
+                     Logger A53B37 - sand/silt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9236b9caf5cb382b09a299854aae3be3.setIcon(icon_19a3c44f302ee53531021663968478a4);
+            
+    
+            var marker_dafdb6a7473eae9c3531fe9c274cf2a0 = L.marker(
+                [38.9653, 68.4956],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_2ed1e38837324f0e63b4cbba9088bb83 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_069b7ed12fc3178f78dcfe68d84021c3 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8d45400b1590bc1418233eea973630e8 = $(`<div id="html_8d45400b1590bc1418233eea973630e8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B38</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>7</td></tr><tr><td><b>Elevation:</b></td><td>4084 m</td></tr><tr><td><b>Surface:</b></td><td>large blocks</td></tr><tr><td><b>Installed:</b></td><td>2019/08/26</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B38_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_069b7ed12fc3178f78dcfe68d84021c3.setContent(html_8d45400b1590bc1418233eea973630e8);
+            
+        
+
+        marker_dafdb6a7473eae9c3531fe9c274cf2a0.bindPopup(popup_069b7ed12fc3178f78dcfe68d84021c3)
+        ;
+
+        
+    
+    
+            marker_dafdb6a7473eae9c3531fe9c274cf2a0.bindTooltip(
+                `<div>
+                     Logger A53B38 - large blocks
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dafdb6a7473eae9c3531fe9c274cf2a0.setIcon(icon_2ed1e38837324f0e63b4cbba9088bb83);
+            
+    
+            var marker_739a00f1dd4f023c90f49b7ff210c663 = L.marker(
+                [38.97075, 68.48125],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_9df8432974c835c1618b57fcc898f349 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3c23f1cc3b092b40894e34ba2496a51c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_125aed4cd5d9b505eceb612e6867ee45 = $(`<div id="html_125aed4cd5d9b505eceb612e6867ee45" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B36</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>8</td></tr><tr><td><b>Elevation:</b></td><td>3732 m</td></tr><tr><td><b>Surface:</b></td><td>silt/gravel</td></tr><tr><td><b>Installed:</b></td><td>2019/08/26</td></tr><tr><td><b>Notes:</b></td><td>BC</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B36_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_3c23f1cc3b092b40894e34ba2496a51c.setContent(html_125aed4cd5d9b505eceb612e6867ee45);
+            
+        
+
+        marker_739a00f1dd4f023c90f49b7ff210c663.bindPopup(popup_3c23f1cc3b092b40894e34ba2496a51c)
+        ;
+
+        
+    
+    
+            marker_739a00f1dd4f023c90f49b7ff210c663.bindTooltip(
+                `<div>
+                     Logger A53B36 - silt/gravel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_739a00f1dd4f023c90f49b7ff210c663.setIcon(icon_9df8432974c835c1618b57fcc898f349);
+            
+    
+            var marker_64f0fbf21a5807ed45c9dec84714199c = L.marker(
+                [38.97151, 68.50634],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_3f3192623cbe188e13090f1c64032a34 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cd3aa81d736482324d66747e7d9ed45d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d7345e16b35f39431e735237364d68ac = $(`<div id="html_d7345e16b35f39431e735237364d68ac" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B3E</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>9</td></tr><tr><td><b>Elevation:</b></td><td>4821 m</td></tr><tr><td><b>Surface:</b></td><td>large blocks / silt infill</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>Summit</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: A53B3E_combined.png         </div>         </div></div>`)[0];
+                popup_cd3aa81d736482324d66747e7d9ed45d.setContent(html_d7345e16b35f39431e735237364d68ac);
+            
+        
+
+        marker_64f0fbf21a5807ed45c9dec84714199c.bindPopup(popup_cd3aa81d736482324d66747e7d9ed45d)
+        ;
+
+        
+    
+    
+            marker_64f0fbf21a5807ed45c9dec84714199c.bindTooltip(
+                `<div>
+                     Logger A53B3E - large blocks / silt infill
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_64f0fbf21a5807ed45c9dec84714199c.setIcon(icon_3f3192623cbe188e13090f1c64032a34);
+            
+    
+            var marker_fe744ea3ec11c9af140f5a188502f316 = L.marker(
+                [38.97086, 68.50642],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_e6cf85de5420a8a082c7ba179cdd1b3f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dd7e5a37dcf83d35c975fce2e4a45ae5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2f5af2cc5174b22b80976fc2eba8e922 = $(`<div id="html_2f5af2cc5174b22b80976fc2eba8e922" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL2560</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>10</td></tr><tr><td><b>Elevation:</b></td><td>4773 m</td></tr><tr><td><b>Surface:</b></td><td>gravel</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>5m to climbers left of main ridge</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL2560_combined.png         </div>         </div></div>`)[0];
+                popup_dd7e5a37dcf83d35c975fce2e4a45ae5.setContent(html_2f5af2cc5174b22b80976fc2eba8e922);
+            
+        
+
+        marker_fe744ea3ec11c9af140f5a188502f316.bindPopup(popup_dd7e5a37dcf83d35c975fce2e4a45ae5)
+        ;
+
+        
+    
+    
+            marker_fe744ea3ec11c9af140f5a188502f316.bindTooltip(
+                `<div>
+                     Logger UTL2560 - gravel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fe744ea3ec11c9af140f5a188502f316.setIcon(icon_e6cf85de5420a8a082c7ba179cdd1b3f);
+            
+    
+            var marker_8e7ac79ed0e1c68169eb4e4321cd1e47 = L.marker(
+                [38.97084, 68.5067],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_b4915de952fdfc430df98b65527673f4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0040058e326a9fcc84e385760a96d24 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_949863ba91ec5697015d6e6369745fec = $(`<div id="html_949863ba91ec5697015d6e6369745fec" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL3046</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>11</td></tr><tr><td><b>Elevation:</b></td><td>4767 m</td></tr><tr><td><b>Surface:</b></td><td>blocky void</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>15-20m to climbers right of main ridge</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL3046_combined.png         </div>         </div></div>`)[0];
+                popup_c0040058e326a9fcc84e385760a96d24.setContent(html_949863ba91ec5697015d6e6369745fec);
+            
+        
+
+        marker_8e7ac79ed0e1c68169eb4e4321cd1e47.bindPopup(popup_c0040058e326a9fcc84e385760a96d24)
+        ;
+
+        
+    
+    
+            marker_8e7ac79ed0e1c68169eb4e4321cd1e47.bindTooltip(
+                `<div>
+                     Logger UTL3046 - blocky void
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8e7ac79ed0e1c68169eb4e4321cd1e47.setIcon(icon_b4915de952fdfc430df98b65527673f4);
+            
+    
+            var marker_49560070e38bba913cb8c7a9bf242f14 = L.marker(
+                [38.96664, 68.51057],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_551dac647ddc815ad5194fc4157f0812 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_85d769d2f7a2fbd8ff544efe6344c5fa = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5ee3e5bb96f127c3e62baa720d54936e = $(`<div id="html_5ee3e5bb96f127c3e62baa720d54936e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A538DB</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>16</td></tr><tr><td><b>Elevation:</b></td><td>4519 m</td></tr><tr><td><b>Surface:</b></td><td>moist sediment (snowmelt)</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>logger from tibet (2017), watch battery!</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A538DB_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_85d769d2f7a2fbd8ff544efe6344c5fa.setContent(html_5ee3e5bb96f127c3e62baa720d54936e);
+            
+        
+
+        marker_49560070e38bba913cb8c7a9bf242f14.bindPopup(popup_85d769d2f7a2fbd8ff544efe6344c5fa)
+        ;
+
+        
+    
+    
+            marker_49560070e38bba913cb8c7a9bf242f14.bindTooltip(
+                `<div>
+                     Logger A538DB - moist sediment (snowmelt)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_49560070e38bba913cb8c7a9bf242f14.setIcon(icon_551dac647ddc815ad5194fc4157f0812);
+            
+    
+            var marker_506c52697024bc5368ba3ab26c61edba = L.marker(
+                [38.9646, 68.50207],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_dd8b23c3bf80e5a5f887d7faadb470b3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_73ae2579e153ec95342946a35efbcae6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b7ccda7274025e8090e254f222bc5e98 = $(`<div id="html_b7ccda7274025e8090e254f222bc5e98" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B3B</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>18</td></tr><tr><td><b>Elevation:</b></td><td>4188 m</td></tr><tr><td><b>Surface:</b></td><td>moist silt</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>rocklogger (external probe)</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B3B_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_73ae2579e153ec95342946a35efbcae6.setContent(html_b7ccda7274025e8090e254f222bc5e98);
+            
+        
+
+        marker_506c52697024bc5368ba3ab26c61edba.bindPopup(popup_73ae2579e153ec95342946a35efbcae6)
+        ;
+
+        
+    
+    
+            marker_506c52697024bc5368ba3ab26c61edba.bindTooltip(
+                `<div>
+                     Logger A53B3B - moist silt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_506c52697024bc5368ba3ab26c61edba.setIcon(icon_dd8b23c3bf80e5a5f887d7faadb470b3);
+            
+    
+            var marker_95339db3cb439154bacde1f718dea3c6 = L.marker(
+                [38.96466, 68.50064],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_e716275b361ddb45a8461f6594bf8118 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_21dc17e6b0a11dfe6f9d1bd3b5c32648 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_790d3798e939b01ba626a0e500be1796 = $(`<div id="html_790d3798e939b01ba626a0e500be1796" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A538D8</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>19</td></tr><tr><td><b>Elevation:</b></td><td>4180 m</td></tr><tr><td><b>Surface:</b></td><td>block void</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr><tr><td><b>Notes:</b></td><td>logger from tibet (2017), watch battery!</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A538D8_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_21dc17e6b0a11dfe6f9d1bd3b5c32648.setContent(html_790d3798e939b01ba626a0e500be1796);
+            
+        
+
+        marker_95339db3cb439154bacde1f718dea3c6.bindPopup(popup_21dc17e6b0a11dfe6f9d1bd3b5c32648)
+        ;
+
+        
+    
+    
+            marker_95339db3cb439154bacde1f718dea3c6.bindTooltip(
+                `<div>
+                     Logger A538D8 - block void
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_95339db3cb439154bacde1f718dea3c6.setIcon(icon_e716275b361ddb45a8461f6594bf8118);
+            
+    
+            var marker_f60411f9d282e43e47a228b96a47a550 = L.marker(
+                [38.96448, 68.49717],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_a0f4c4a5fb6d05bb1208298305405912 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b73db860834ea51c0f57a13279b9e506 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_87e13235b0397e71aab68b793e989baa = $(`<div id="html_87e13235b0397e71aab68b793e989baa" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL3747</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>20</td></tr><tr><td><b>Elevation:</b></td><td>4137 m</td></tr><tr><td><b>Surface:</b></td><td>moist silt</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL3747_combined.png         </div>         </div></div>`)[0];
+                popup_b73db860834ea51c0f57a13279b9e506.setContent(html_87e13235b0397e71aab68b793e989baa);
+            
+        
+
+        marker_f60411f9d282e43e47a228b96a47a550.bindPopup(popup_b73db860834ea51c0f57a13279b9e506)
+        ;
+
+        
+    
+    
+            marker_f60411f9d282e43e47a228b96a47a550.bindTooltip(
+                `<div>
+                     Logger UTL3747 - moist silt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f60411f9d282e43e47a228b96a47a550.setIcon(icon_a0f4c4a5fb6d05bb1208298305405912);
+            
+    
+            var marker_b4aa21b8720bcb5e3918cea922d651f8 = L.marker(
+                [38.96504, 68.49275],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_7ee5c30c627d266d5955db6625f9e952 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_73387d53bee70030dc98b09576631a68 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_569d5a5d54d0a1af6ce9a3a9a3cba622 = $(`<div id="html_569d5a5d54d0a1af6ce9a3a9a3cba622" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL2762</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>21</td></tr><tr><td><b>Elevation:</b></td><td>4041 m</td></tr><tr><td><b>Surface:</b></td><td>silt</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL2762_combined.png         </div>         </div></div>`)[0];
+                popup_73387d53bee70030dc98b09576631a68.setContent(html_569d5a5d54d0a1af6ce9a3a9a3cba622);
+            
+        
+
+        marker_b4aa21b8720bcb5e3918cea922d651f8.bindPopup(popup_73387d53bee70030dc98b09576631a68)
+        ;
+
+        
+    
+    
+            marker_b4aa21b8720bcb5e3918cea922d651f8.bindTooltip(
+                `<div>
+                     Logger UTL2762 - silt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b4aa21b8720bcb5e3918cea922d651f8.setIcon(icon_7ee5c30c627d266d5955db6625f9e952);
+            
+    
+            var marker_d9ad05b879dafbcba457ffd2fb0d0382 = L.marker(
+                [38.96662, 68.48821],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_a7b9ceabdf1a4c4b43722a0449eb2947 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f0fbf7a1f0359958de44cd28cea94865 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c92c300176c76d5b85114d352fd6afc0 = $(`<div id="html_c92c300176c76d5b85114d352fd6afc0" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL3549</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>22</td></tr><tr><td><b>Elevation:</b></td><td>3969 m</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL3549_combined.png         </div>         </div></div>`)[0];
+                popup_f0fbf7a1f0359958de44cd28cea94865.setContent(html_c92c300176c76d5b85114d352fd6afc0);
+            
+        
+
+        marker_d9ad05b879dafbcba457ffd2fb0d0382.bindPopup(popup_f0fbf7a1f0359958de44cd28cea94865)
+        ;
+
+        
+    
+    
+            marker_d9ad05b879dafbcba457ffd2fb0d0382.bindTooltip(
+                `<div>
+                     Logger UTL3549
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9ad05b879dafbcba457ffd2fb0d0382.setIcon(icon_a7b9ceabdf1a4c4b43722a0449eb2947);
+            
+    
+            var marker_1bf440d32cb0978c39bf788442a6132d = L.marker(
+                [38.96772, 68.48367],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_08eacd7ad5db1a5a86f65d7d84f33abf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a25da76776c85ea08e5160ce0957c46 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6eb3ef1a58398d7ed959a72db82828d6 = $(`<div id="html_6eb3ef1a58398d7ed959a72db82828d6" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTL1210</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>23</td></tr><tr><td><b>Elevation:</b></td><td>3781 m</td></tr><tr><td><b>Installed:</b></td><td>2019/08/27</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTL1210_combined.png         </div>         </div></div>`)[0];
+                popup_5a25da76776c85ea08e5160ce0957c46.setContent(html_6eb3ef1a58398d7ed959a72db82828d6);
+            
+        
+
+        marker_1bf440d32cb0978c39bf788442a6132d.bindPopup(popup_5a25da76776c85ea08e5160ce0957c46)
+        ;
+
+        
+    
+    
+            marker_1bf440d32cb0978c39bf788442a6132d.bindTooltip(
+                `<div>
+                     Logger UTL1210
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1bf440d32cb0978c39bf788442a6132d.setIcon(icon_08eacd7ad5db1a5a86f65d7d84f33abf);
+            
+    
+            var marker_1f69d26529d3c47d5021ddc8f819d19c = L.marker(
+                [39.03555, 68.46115],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_8ea75df890b5ed87b90819779112da9b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1cdd51beb775cbea2b2766c0b992d51d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_cecb27f7e4b48c9a4534079f44e0470c = $(`<div id="html_cecb27f7e4b48c9a4534079f44e0470c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger UTLSN1017</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>24</td></tr><tr><td><b>Elevation:</b></td><td>3017 m</td></tr><tr><td><b>Installed:</b></td><td>2019/08/28</td></tr></table>         <div style="margin-top: 10px; font-size: 10px; color: #666;">             Looking for: UTLSN1017_combined.png         </div>         </div></div>`)[0];
+                popup_1cdd51beb775cbea2b2766c0b992d51d.setContent(html_cecb27f7e4b48c9a4534079f44e0470c);
+            
+        
+
+        marker_1f69d26529d3c47d5021ddc8f819d19c.bindPopup(popup_1cdd51beb775cbea2b2766c0b992d51d)
+        ;
+
+        
+    
+    
+            marker_1f69d26529d3c47d5021ddc8f819d19c.bindTooltip(
+                `<div>
+                     Logger UTLSN1017
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1f69d26529d3c47d5021ddc8f819d19c.setIcon(icon_8ea75df890b5ed87b90819779112da9b);
+            
+    
+            var marker_dc011857e85073487866457e54f28154 = L.marker(
+                [39.06112, 68.37984],
+                {
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var icon_83f0115e9987bf7acd367c298c5f7289 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "thermometer-half",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d6b4cbb3f506fd08e7433ee918827a2f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_734cf714f28fa73f16712e13ab35630e = $(`<div id="html_734cf714f28fa73f16712e13ab35630e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4>Logger A53B3A</h4>         <table style="width: 100%; font-size: 12px;">     <tr><td><b>Waypoint:</b></td><td>43</td></tr><tr><td><b>Elevation:</b></td><td>2238 m</td></tr><tr><td><b>Surface:</b></td><td>gravel</td></tr><tr><td><b>Installed:</b></td><td>2019/08/28</td></tr><tr><td><b>Notes:</b></td><td>access code</td></tr></table>         <div style="margin-top: 10px;">             <a href="plots/A53B3A_combined.png" target="_blank" style="                 background-color: #4CAF50;                  color: white;                  padding: 8px 16px;                  text-decoration: none;                  border-radius: 4px;                 display: inline-block;                 font-size: 12px;             ">View Temperature Plot</a>         </div>         </div></div>`)[0];
+                popup_d6b4cbb3f506fd08e7433ee918827a2f.setContent(html_734cf714f28fa73f16712e13ab35630e);
+            
+        
+
+        marker_dc011857e85073487866457e54f28154.bindPopup(popup_d6b4cbb3f506fd08e7433ee918827a2f)
+        ;
+
+        
+    
+    
+            marker_dc011857e85073487866457e54f28154.bindTooltip(
+                `<div>
+                     Logger A53B3A - gravel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc011857e85073487866457e54f28154.setIcon(icon_83f0115e9987bf7acd367c298c5f7289);
+            
+    
+            map_295722c237b7eaa383b6f0970a270a32.fitBounds(
+                [[38.722846, 68.37984], [39.06112, 71.393875]],
+                {"padding": [20, 20]}
+            );
+        
+    
+            var layer_control_04eb23889de76708ffebf339cb1498f3_layers = {
+                base_layers : {
+                    "OpenStreetMap" : tile_layer_0a4b14a488921feea93c18c1884d4255,
+                    "OpenTopoMap" : tile_layer_8c090ea4f27e0c1d9890fe6cc6432cfc,
+                    "Satellite" : tile_layer_cc80b73579bf76e29638f8f30e4d1eba,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_04eb23889de76708ffebf339cb1498f3 = L.control.layers(
+                layer_control_04eb23889de76708ffebf339cb1498f3_layers.base_layers,
+                layer_control_04eb23889de76708ffebf339cb1498f3_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_295722c237b7eaa383b6f0970a270a32);
+        
+    
+            var measure_control_d6d0f1c38dfad7c333e7d36a33aa8a1d = new L.Control.Measure(
+                {
+  "position": "topright",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_295722c237b7eaa383b6f0970a270a32.addControl(measure_control_d6d0f1c38dfad7c333e7d36a33aa8a1d);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+</script>
+</html>
