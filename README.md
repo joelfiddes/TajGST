@@ -125,7 +125,9 @@ When adding new data:
 ## Interactive Map
 
 ### Sangvor/ Nissai
-<img width="1511" height="801" alt="image" src="https://github.com/user-attachments/assets/edcb2cf3-ddbb-42d8-87d9-d483bdf3d9a8" />
+<img width="1495" height="665" alt="image" src="https://github.com/user-attachments/assets/f0f1af61-cfc5-409b-a8e7-a2b8d3d032af" />
+
 ### Fan Mountains
-<img width="1511" height="801" alt="image" src="https://github.com/user-attachments/assets/c4cd29bc-7fec-4d69-ae59-6c6c3e29be15" />
+<img width="1495" height="665" alt="image" src="https://github.com/user-attachments/assets/0b883d94-3895-4aed-ae66-8dbcd4bd6587" />
+
 
